@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCB - Login</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="login-overlay">
+  <div class="login-card">
+    <h2>Sign in</h2>
+    <input id="u" placeholder="Username" autocomplete="username">
+    <input id="p" type="password" placeholder="Password" autocomplete="current-password">
+    <button id="loginBtn" class="btn primary">Sign in</button>
+    <div id="err" class="error" aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('loginBtn').addEventListener('click', ()=>{
+  const u=document.getElementById('u').value.trim();
+  const p=document.getElementById('p').value.trim();
+  if(u==='MattyC' && p==='2323'){
+    sessionStorage.setItem('loggedIn','true');
+    sessionStorage.setItem('username',u);
+    location.href='index.html';
+  }else{
+    document.getElementById('err').textContent='Invalid username or password';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-page="tasks">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCB - Tasks</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+<script src="firestore.js"></script>
+</head>
+<body>
+<script>if(!sessionStorage.getItem('loggedIn'))location.href='login.html';function logout(){sessionStorage.clear();location.href='login.html';}</script>
+
+<nav class="navbar">
+  <div class="brand">MCB</div>
+  <button id="menuBtn">☰ Menu</button>
+  <div id="menuDropdown" class="menu-dropdown">
+    <button onclick="location.href='index.html'">Dashboard</button>
+    <button onclick="location.href='work.html'">Work Logs</button>
+    <button onclick="location.href='calendar.html'">Calendar</button>
+    <button onclick="location.href='materials.html'">Materials</button>
+    <button onclick="location.href='cutting.html'">Cutting List</button>
+    <button onclick="location.href='reports.html'">Reports</button>
+    <button onclick="location.href='sites.html'">Job Sites</button>
+    <button onclick="location.href='tasks.html'">Tasks</button>
+    <button onclick="location.href='settings.html'">Settings</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<main>
+  <h1>Tasks</h1>
+  <div class="panel">
+    <label>New Task</label>
+    <div class="row">
+      <input id="newTask" placeholder="e.g. Framing, Gib, Painting">
+      <button class="btn primary" id="addTaskBtn">Add Task</button>
+    </div>
+  </div>
+  <div id="tasksList"></div>
+</main>
+
+<div class="footer-spacer"></div>
+<script src="app.js"></script>
+<script>App.init('tasks');</script>
+</body>
+</html>

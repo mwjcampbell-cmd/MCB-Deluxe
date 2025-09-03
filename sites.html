@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-page="sites">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCB - Job Sites</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+<script src="firestore.js"></script>
+</head>
+<body>
+<script>if(!sessionStorage.getItem('loggedIn'))location.href='login.html';function logout(){sessionStorage.clear();location.href='login.html';}</script>
+
+<nav class="navbar">
+  <div class="brand">MCB</div>
+  <button id="menuBtn">☰ Menu</button>
+  <div id="menuDropdown" class="menu-dropdown">
+    <button onclick="location.href='index.html'">Dashboard</button>
+    <button onclick="location.href='work.html'">Work Logs</button>
+    <button onclick="location.href='calendar.html'">Calendar</button>
+    <button onclick="location.href='materials.html'">Materials</button>
+    <button onclick="location.href='cutting.html'">Cutting List</button>
+    <button onclick="location.href='reports.html'">Reports</button>
+    <button onclick="location.href='sites.html'">Job Sites</button>
+    <button onclick="location.href='tasks.html'">Tasks</button>
+    <button onclick="location.href='settings.html'">Settings</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<main>
+  <h1>Job Sites</h1>
+  <div class="panel">
+    <input type="hidden" id="editSiteId">
+    <label>Name</label><input id="siteName" placeholder="e.g. 12 Example St – Kitchen Reno">
+    <label>Address</label><input id="siteAddress" placeholder="Address">
+    <label>Contact Info</label><input id="siteContact" placeholder="Name / Phone / Email">
+    <label>Notes</label><textarea id="siteNotes" placeholder="Notes"></textarea>
+    <div class="row">
+      <button class="btn primary" id="saveSiteBtn">Save Site</button>
+      <button class="btn" id="cancelSiteBtn" style="display:none;">Cancel Edit</button>
+    </div>
+  </div>
+  <div id="sitesList"></div>
+</main>
+
+<div class="footer-spacer"></div>
+<script src="app.js"></script>
+<script>App.init('sites');</script>
+</body>
+</html>
