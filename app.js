@@ -295,3 +295,16 @@ function card(html){ const d=document.createElement('div'); d.className='entry-c
 function button(txt, onClick){ const b=document.createElement('button'); b.className='btn small'; b.textContent=txt; b.onclick=onClick; return b; }
 
 window.App = App;
+document.addEventListener("DOMContentLoaded", () => {
+  const syncBtn = document.getElementById("syncBtn");
+  if (syncBtn) {
+    syncBtn.addEventListener("click", async () => {
+      try {
+        await forceSync();
+        alert("✅ Data synced with Firestore!");
+      } catch (err) {
+        alert("⚠️ Sync failed: " + err.message);
+      }
+    });
+  }
+});
