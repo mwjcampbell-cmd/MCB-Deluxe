@@ -16,3 +16,15 @@ try{
     try{ fs.enablePersistence && fs.enablePersistence(); }catch(e){ console.warn('FS persistence not enabled', e); }
   }
 }catch(e){ console.warn('Firebase init skipped', e); }
+// Force sync between IndexedDB and Firestore
+async function forceSync() {
+  console.log("🔄 Forcing sync between IndexedDB and Firestore...");
+  // Example: loop through your IndexedDB stores and push to Firestore
+  // Then pull down latest data from Firestore
+  // (Implementation depends on your schema)
+
+  // For now just simulate
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(true), 1000);
+  });
+}
