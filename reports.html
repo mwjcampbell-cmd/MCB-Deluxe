@@ -10,9 +10,23 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
 <script src="firestore.js"></script>
+
+<style>
+  /* Hide select and print button when printing */
+  @media print {
+    #reportSite,
+    #printBtn,
+    .panel label {
+      display: none;
+    }
+  }
+</style>
 </head>
 <body>
-<script>if(!sessionStorage.getItem('loggedIn'))location.href='login.html';function logout(){sessionStorage.clear();location.href='login.html';}</script>
+<script>
+  if(!sessionStorage.getItem('loggedIn')) location.href='login.html';
+  function logout() { sessionStorage.clear(); location.href='login.html'; }
+</script>
 
 <nav class="navbar">
   <div class="brand">MCB</div>
@@ -37,11 +51,28 @@
     <label>Select Site</label>
     <select id="reportSite"></select>
   </div>
+
   <div id="reportOutput"></div>
+  <button id="printBtn">Print Report</button>
 </main>
 
 <div class="footer-spacer"></div>
+
 <script src="app.js"></script>
-<script>App.init('reports');</script>
+<script>
+  App.init('reports');
+
+  // Print only the report
+  document.getElementById('printBtn').addEventListener('click', function() {
+    const reportContent = document.getElementById('reportOutput').innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    document.body.innerHTML = reportContent; // show only report
+    window.print(); // open print dialog
+    document.body.innerHTML = originalContent; // restore original page
+
+    App.init('reports'); // re-initialize JS
+  });
+</script>
 </body>
 </html>
